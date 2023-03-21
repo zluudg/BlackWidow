@@ -31,6 +31,7 @@ from extractors.Forms import extract_forms, parse_form
 from extractors.Urls import extract_urls
 from extractors.Iframes import extract_iframes
 from extractors.Ui_forms import extract_ui_forms
+from extractors.Ssitext import extract_ssitext
 
 
 import logging
@@ -1432,6 +1433,10 @@ class Crawler:
         ui_forms = extract_ui_forms(driver)
         events = extract_events(driver)
         iframes = extract_iframes(driver)
+        ssitext = extract_ssitext(driver)
+        with open("ssi.txt", 'a') as f:
+            f.write(str(ssitext) + '\n')
+            f.write("=========================\n")
 
         # Check if we need to wait for asynch
         try:
